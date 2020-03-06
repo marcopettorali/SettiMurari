@@ -1,51 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package settimurari;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Marco
- */
 public class SettiMurari extends Application {
+
+   
     
+
+    private void setupArraySettoAttuale() {
+        try {
+            TextInputDialog attualeInputDialog = new TextInputDialog("Inserire un numero");
+            attualeInputDialog.setHeaderText("Inserire numero setti stato ATTUALE");
+            attualeInputDialog.showAndWait();
+            GestoreSetti.buildAttualeArr(Integer.parseInt(attualeInputDialog.getEditor().getText()));
+        } catch (Exception e) {
+            setupArraySettoAttuale();
+        }
+    }
+
+    private void setupArraySettoModificato() {
+        try {
+            TextInputDialog modificatoInputDialog = new TextInputDialog("Inserire un numero");
+            modificatoInputDialog.setHeaderText("Inserire numero setti stato MODIFICATO");
+            modificatoInputDialog.showAndWait();
+            GestoreSetti.buildModificatoArr(Integer.parseInt(modificatoInputDialog.getEditor().getText()));
+        } catch (Exception e) {
+            setupArraySettoModificato();
+
+        }
+    }
+
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+
+        setupArraySettoAttuale();
+        setupArraySettoModificato();
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
+        Scene scene = new Scene(new SettiMurariGUI());  
+        primaryStage.setTitle("Calcolo Setti Murari");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
