@@ -1,22 +1,11 @@
 package settimurari;
 
+import java.io.*;
 import java.text.*;
 
-public class Setto {
+public class Setto implements Serializable {
 
-    private double to;
-    private double e;
-    private double g;
-    private double h;
-    private double l;
-    private double t;
-    private double s0;
-    private double n;
-
-    private double v;
-    private double j;
-    private double k;
-    private double d;
+    private double to, e, g, h, l, t, s0, n, v, j, k, d;
 
     public Setto(double to, double e, double g, double h, double l, double t, double s0, double n) {
         this.to = to;
@@ -77,16 +66,16 @@ public class Setto {
     @Override
     public String toString() {
         String ret = ""
-                + "to = " + to + " N/mmq\n"
-                + "e = " + e + " N/mmq\n"
-                + "g = " + g + " N/mmq\n"
+                + "to = " + to * 10 + " N/mmq\n"
+                + "e = " + e * 10 + " N/mmq\n"
+                + "g = " + g * 10 + " N/mmq\n"
                 + "h = " + h + " cm\n"
                 + "l = " + l + " cm\n"
                 + "t = " + t + " cm\n"
-                + "s0 = " + s0 + " N/mmq\n"
+                + "s0 = " + s0 * 10 + " N/mmq\n"
                 + "n = " + n + "\n"
                 + "\n"
-                + "V = l * t * (1.5 * 𝜏o / b) * Math.sqrt(1 + (σ0 / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(v) + "\n"
+                + "V = l * t * (1.5 * 𝜏o / b) * √(1 + (σ0 / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(v) + "\n"
                 + "J = l * h^3 / 12 = " + new DecimalFormat("0.00").format(j) + "\n"
                 + "K = 1 / ((h^3 / (n * E * J)) + (1.2 * h / (G * A) )) = " + new DecimalFormat("0.00").format(k) + "\n"
                 + "D = V/K = " + new DecimalFormat("0.00").format(d);

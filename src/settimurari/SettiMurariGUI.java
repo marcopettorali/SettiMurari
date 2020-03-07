@@ -1,105 +1,117 @@
 package settimurari;
 
+import java.io.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.*;
 import javafx.geometry.*;
 import javafx.scene.text.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class SettiMurariGUI extends Pane {
 
-    protected final VBox vBox;
-    protected final MenuBar menuBar;
-    protected final Menu menu;
-    protected final MenuItem nuovoMenu;
-    protected final SeparatorMenuItem separatorMenuItem;
-    protected final MenuItem apriMenu;
-    protected final SeparatorMenuItem separatorMenuItem0;
-    protected final MenuItem salvaMenu;
-    protected final MenuItem salvaConNomeMenu;
-    protected final SeparatorMenuItem separatorMenuItem1;
-    protected final MenuItem chiudiMenu;
-    protected final Menu menu0;
-    protected final MenuItem guidaMenu;
-    protected final MenuItem infoMenu;
-    protected final VBox vBox0;
-    protected final HBox hBox;
-    protected final VBox vBox1;
-    protected final VBox vBox2;
-    protected final Label label;
-    protected final GridPane gridPane;
-    protected final ColumnConstraints columnConstraints;
-    protected final ColumnConstraints columnConstraints0;
-    protected final ColumnConstraints columnConstraints1;
-    protected final ColumnConstraints columnConstraints2;
-    protected final RowConstraints rowConstraints;
-    protected final RowConstraints rowConstraints0;
-    protected final RowConstraints rowConstraints1;
-    protected final Label label0;
-    protected final Label label1;
-    protected final Label label2;
-    protected final TextField toField;
-    protected final TextField eField;
-    protected final TextField gField;
-    protected final Label label3;
-    protected final Label label4;
-    protected final Label label5;
-    protected final Label label6;
-    protected final Label label7;
-    protected final Label label8;
-    protected final VBox vBox3;
-    protected final Label label9;
-    protected final GridPane gridPane0;
-    protected final Label label10;
-    protected final Label label11;
-    protected final Label label12;
-    protected final TextField hField;
-    protected final TextField lField;
-    protected final TextField tField;
-    protected final Label label13;
-    protected final Label label14;
-    protected final Label label15;
-    protected final Label label16;
-    protected final Label label17;
-    protected final Label label18;
-    protected final ColumnConstraints columnConstraints3;
-    protected final ColumnConstraints columnConstraints4;
-    protected final ColumnConstraints columnConstraints5;
-    protected final ColumnConstraints columnConstraints6;
-    protected final RowConstraints rowConstraints2;
-    protected final RowConstraints rowConstraints3;
-    protected final RowConstraints rowConstraints4;
-    protected final VBox vBox4;
-    protected final Label label19;
-    protected final GridPane gridPane1;
-    protected final Label label110;
-    protected final Label label111;
-    protected final TextField s0Field;
-    protected final TextField nField;
-    protected final Label label112;
-    protected final Label label113;
-    protected final Label label114;
-    protected final Label label115;
-    protected final ColumnConstraints columnConstraints7;
-    protected final ColumnConstraints columnConstraints8;
-    protected final ColumnConstraints columnConstraints9;
-    protected final ColumnConstraints columnConstraints10;
-    protected final RowConstraints rowConstraints5;
-    protected final RowConstraints rowConstraints6;
-    protected final HBox hBox0;
-    protected final Button calcolaBtn;
-    protected final VBox vBox5;
-    protected final Label label116;
-    protected final TextArea logText;
-    protected final HBox hBox1;
-    protected final Label label117;
-    protected final TextField settoField;
-    protected final Label label118;
-    protected final ChoiceBox statoChoice;
-    protected final Button modificaBtn;
-    protected final HBox hBox2;
-    protected final TextArea attualeText;
-    protected final TextArea modificatoText;
-    protected final Label statoLbl;
+    private boolean modificaMode = false;
+    private int settoMod;
+    private String sceltaMod;
+
+    private final VBox vBox;
+    private final MenuBar menuBar;
+    private final Menu menu;
+    private final MenuItem nuovoMenu;
+    private final SeparatorMenuItem separatorMenuItem;
+    private final MenuItem apriMenu;
+    private final SeparatorMenuItem separatorMenuItem0;
+    private final MenuItem salvaMenu;
+    private final MenuItem salvaConNomeMenu;
+    private final SeparatorMenuItem separatorMenuItem1;
+    private final MenuItem chiudiMenu;
+    private final Menu menu0;
+    private final MenuItem guidaMenu;
+    private final MenuItem infoMenu;
+    private final VBox vBox0;
+    private final HBox hBox;
+    private final VBox vBox1;
+    private final VBox vBox2;
+    private final Label label;
+    private final GridPane gridPane;
+    private final ColumnConstraints columnConstraints;
+    private final ColumnConstraints columnConstraints0;
+    private final ColumnConstraints columnConstraints1;
+    private final ColumnConstraints columnConstraints2;
+    private final RowConstraints rowConstraints;
+    private final RowConstraints rowConstraints0;
+    private final RowConstraints rowConstraints1;
+    private final Label label0;
+    private final Label label1;
+    private final Label label2;
+    private final TextField toField;
+    private final TextField eField;
+    private final TextField gField;
+    private final Label label3;
+    private final Label label4;
+    private final Label label5;
+    private final Label label6;
+    private final Label label7;
+    private final Label label8;
+    private final VBox vBox3;
+    private final Label label9;
+    private final GridPane gridPane0;
+    private final Label label10;
+    private final Label label11;
+    private final Label label12;
+    private final TextField hField;
+    private final TextField lField;
+    private final TextField tField;
+    private final Label label13;
+    private final Label label14;
+    private final Label label15;
+    private final Label label16;
+    private final Label label17;
+    private final Label label18;
+    private final ColumnConstraints columnConstraints3;
+    private final ColumnConstraints columnConstraints4;
+    private final ColumnConstraints columnConstraints5;
+    private final ColumnConstraints columnConstraints6;
+    private final RowConstraints rowConstraints2;
+    private final RowConstraints rowConstraints3;
+    private final RowConstraints rowConstraints4;
+    private final VBox vBox4;
+    private final Label label19;
+    private final GridPane gridPane1;
+    private final Label label110;
+    private final Label label111;
+    private final TextField s0Field;
+    private final TextField nField;
+    private final Label label112;
+    private final Label label113;
+    private final Label label114;
+    private final Label label115;
+    private final ColumnConstraints columnConstraints7;
+    private final ColumnConstraints columnConstraints8;
+    private final ColumnConstraints columnConstraints9;
+    private final ColumnConstraints columnConstraints10;
+    private final RowConstraints rowConstraints5;
+    private final RowConstraints rowConstraints6;
+    private final HBox hBox0;
+    private final Button calcolaBtn;
+    private final VBox vBox5;
+    private final Label label116;
+    private final TextArea logText;
+    private final HBox modificaHBox;
+    private final Label label117;
+    private final TextField settoField;
+    private final Label label118;
+    private final ChoiceBox statoChoice;
+    private final Button modificaBtn;
+    private final HBox hBox2;
+    private final TextArea attualeText;
+    private final TextArea modificatoText;
+    private final Label statoLbl;
 
     public SettiMurariGUI() {
 
@@ -186,7 +198,7 @@ public class SettiMurariGUI extends Pane {
         vBox5 = new VBox();
         label116 = new Label();
         logText = new TextArea();
-        hBox1 = new HBox();
+        modificaHBox = new HBox();
         label117 = new Label();
         settoField = new TextField();
         label118 = new Label();
@@ -457,14 +469,18 @@ public class SettiMurariGUI extends Pane {
         logText.setPrefHeight(356.0);
         logText.setPrefWidth(465.0);
 
-        hBox1.setAlignment(javafx.geometry.Pos.CENTER);
-        hBox1.setSpacing(10.0);
+        modificaHBox.setAlignment(javafx.geometry.Pos.CENTER);
+        modificaHBox.setSpacing(10.0);
 
         label117.setText("Setto n.");
 
         label118.setText("Stato:");
 
         statoChoice.setPrefWidth(150.0);
+        List<String> list = new ArrayList<>();
+        list.add("Attuale");
+        list.add("Modificato");
+        statoChoice.setItems(FXCollections.observableArrayList((list)));
 
         modificaBtn.setMnemonicParsing(false);
         modificaBtn.setText("Modifica");
@@ -481,6 +497,8 @@ public class SettiMurariGUI extends Pane {
         hBox2.setPadding(new Insets(20.0, 0.0, 20.0, 0.0));
 
         statoLbl.setText("Stato");
+        statoLbl.setTextFill(Color.WHITE);
+        statoLbl.setFont(new Font("System Bold", 12.0));
         VBox.setMargin(vBox0, new Insets(20.0));
 
         menu.getItems().add(nuovoMenu);
@@ -562,12 +580,12 @@ public class SettiMurariGUI extends Pane {
         hBox.getChildren().add(vBox1);
         vBox5.getChildren().add(label116);
         vBox5.getChildren().add(logText);
-        hBox1.getChildren().add(label117);
-        hBox1.getChildren().add(settoField);
-        hBox1.getChildren().add(label118);
-        hBox1.getChildren().add(statoChoice);
-        hBox1.getChildren().add(modificaBtn);
-        vBox5.getChildren().add(hBox1);
+        modificaHBox.getChildren().add(label117);
+        modificaHBox.getChildren().add(settoField);
+        modificaHBox.getChildren().add(label118);
+        modificaHBox.getChildren().add(statoChoice);
+        modificaHBox.getChildren().add(modificaBtn);
+        vBox5.getChildren().add(modificaHBox);
         hBox.getChildren().add(vBox5);
         vBox0.getChildren().add(hBox);
         hBox2.getChildren().add(attualeText);
@@ -577,12 +595,77 @@ public class SettiMurariGUI extends Pane {
         vBox.getChildren().add(vBox0);
         getChildren().add(vBox);
 
-        aggiungiLog(GestoreSetti.getStageLog());
-
+        //BUTTONS
         calcolaBtn.setOnAction(e -> {
             calcolaBtnHandler();
         });
 
+        modificaBtn.setOnAction(e -> {
+            modificaBtnHandler();
+        });
+
+        //MENU
+        nuovoMenu.setOnAction(e -> {
+            nuovoMenuHandler();
+        });
+
+        salvaMenu.setOnAction(e -> {
+            salvaMenuHandler();
+        });
+
+        apriMenu.setOnAction(e -> {
+            apriMenuHandler();
+        });
+    }
+
+    private void setupArraySettoAttuale() {
+        try {
+            TextInputDialog attualeInputDialog = new TextInputDialog("Inserire un numero");
+            attualeInputDialog.setHeaderText("Inserire numero setti stato ATTUALE");
+            attualeInputDialog.showAndWait();
+            GestoreSetti.buildAttualeArr(Integer.parseInt(attualeInputDialog.getEditor().getText()));
+        } catch (Exception e) {
+            setupArraySettoAttuale();
+        }
+    }
+
+    private void setupArraySettoModificato() {
+        try {
+            TextInputDialog modificatoInputDialog = new TextInputDialog("Inserire un numero");
+            modificatoInputDialog.setHeaderText("Inserire numero setti stato MODIFICATO");
+            modificatoInputDialog.showAndWait();
+            GestoreSetti.buildModificatoArr(Integer.parseInt(modificatoInputDialog.getEditor().getText()));
+        } catch (Exception e) {
+            setupArraySettoModificato();
+
+        }
+    }
+
+    public void reset() {
+        toField.setText("");
+        eField.setText("");
+        gField.setText("");
+        hField.setText("");
+        lField.setText("");
+        tField.setText("");
+        s0Field.setText("");
+        nField.setText("");
+
+        attualeText.setText("");
+        modificatoText.setText("");
+
+        GestoreSetti.reset();
+
+        setupArraySettoAttuale();
+        setupArraySettoModificato();
+
+        aggiungiLog("------------NUOVO SETTO---------------");
+        aggiungiLog(GestoreSetti.getStageLog());
+
+        modificaHBox.setDisable(true);
+        statoLbl.setVisible(false);
+        calcolaBtn.setDisable(false);
+        modificaMode = false;
     }
 
     private void aggiungiLog(String s) {
@@ -608,40 +691,27 @@ public class SettiMurariGUI extends Pane {
 //        nField.setText("");
     }
 
-    private void calcolaBtnHandler() {
-        double to;
-        double e;
-        double g;
-        double h = 0;
-        double l;
-        double t;
-        double s0;
-        double n;
+    private void stampaSetti() {
+        attualeText.setText("");
+        modificatoText.setText("");
 
-        try {
-            to = Double.parseDouble(toField.getText().replace(",", "."));
-            e = Double.parseDouble(eField.getText().replace(",", "."));
-            g = Double.parseDouble(gField.getText().replace(",", "."));
-            h = Double.parseDouble(hField.getText().replace(",", "."));
-            l = Double.parseDouble(lField.getText().replace(",", "."));
-            if (l <= h / 3) {
-                throw new Exception("base");
-            }
-            t = Double.parseDouble(tField.getText().replace(",", "."));
-            s0 = Double.parseDouble(s0Field.getText().replace(",", "."));
-            n = Double.parseDouble(nField.getText().replace(",", "."));
-        } catch (Exception ex) {
-            if (ex.getMessage().equals("base")) {
-                aggiungiLog("ERRORE: inserire un valore di lunghezza maggiore di h/3 = " + h / 3);
-            } else {
-                aggiungiLog("ERRORE: valore inserito non numerico.");
-            }
-            return;
+        for (int i = 0; i < GestoreSetti.getAttualeArr().length; i++) {
+            Setto setto = GestoreSetti.getAttualeArr()[i];
+            aggiungiAttualeText("Stato ATTUALE - setto n. " + (i + 1));
+            aggiungiAttualeText(setto.toString());
+            aggiungiAttualeText("--------------------------------------");
         }
 
-        Setto s = new Setto(to, e, g, h, l, t, s0, n);
-        s.calcola();
+        for (int i = 0; i < GestoreSetti.getModificatoArr().length; i++) {
+            Setto setto = GestoreSetti.getModificatoArr()[i];
+            aggiungiModificatoText("Stato MODIFICATO - setto n. " + (i + 1));
+            aggiungiModificatoText(setto.toString());
+            aggiungiModificatoText("--------------------------------------");
+        }
 
+    }
+
+    private void stampaSetto(Setto s) {
         if (!GestoreSetti.attualeCompletato()) {
             aggiungiAttualeText("Stato ATTUALE - setto n. " + (GestoreSetti.getAttualeStage() + 1));
             aggiungiAttualeText(s.toString());
@@ -651,31 +721,173 @@ public class SettiMurariGUI extends Pane {
             aggiungiModificatoText(s.toString());
             aggiungiModificatoText("--------------------------------------");
         }
+    }
 
+    private void calcolaBtnHandler() {
+        if (!modificaMode) {
+            calcolaBtnAggiungiSetto();
+        } else {
+            calcolaBtnModificaSetto();
+        }
+    }
+
+    private Setto estraiSettoDaCampiInseriti() {
+        double to, e, g, h = 0, l, t, s0, n;
+        try {
+            to = Double.parseDouble(toField.getText().replace(",", ".")) / 10;
+            e = Double.parseDouble(eField.getText().replace(",", ".")) / 10;
+            g = Double.parseDouble(gField.getText().replace(",", ".")) / 10;
+            h = Double.parseDouble(hField.getText().replace(",", "."));
+            l = Double.parseDouble(lField.getText().replace(",", "."));
+            t = Double.parseDouble(tField.getText().replace(",", "."));
+            s0 = Double.parseDouble(s0Field.getText().replace(",", ".")) / 10;
+            n = Double.parseDouble(nField.getText().replace(",", "."));
+
+            if (l <= h / 3) {
+                throw new Exception("base");
+            }
+            if (to < 0 || e < 0 || g < 0 || h < 0 || l < 0 || t < 0 | s0 < 0 || n < 0) {
+                throw new Exception("negativo");
+            }
+        } catch (Exception ex) {
+            if (ex.getMessage().equals("base")) {
+                aggiungiLog("ERRORE: inserire un valore di lunghezza maggiore di h/3 = " + h / 3);
+            } else if (ex.getMessage().equals("base")) {
+                aggiungiLog("ERRORE: inserire un valore positivo");
+            } else {
+                aggiungiLog("ERRORE: valore inserito non numerico.");
+            }
+            return null;
+        }
+
+        Setto s = new Setto(to, e, g, h, l, t, s0, n);
+        return s;
+    }
+
+    private void calcolaBtnAggiungiSetto() {
+
+        Setto s = estraiSettoDaCampiInseriti();
+
+        if (s == null) {
+            return;
+        }
+
+        s.calcola();
+        stampaSetto(s);
         GestoreSetti.aggiungiSetto(s);
         aggiungiLog(GestoreSetti.getStageLog());
         clear();
 
         if (GestoreSetti.modificatoCompletato()) {
-
-            attualeText.setText("");
-            modificatoText.setText("");
-
-            for (int i = 0; i < GestoreSetti.getAttualeArr().length; i++) {
-                Setto setto = GestoreSetti.getAttualeArr()[i];
-                aggiungiAttualeText("Stato ATTUALE - setto n. " + (i + 1));
-                aggiungiAttualeText(setto.toString());
-                aggiungiAttualeText("--------------------------------------");
-            }
-
-            for (int i = 0; i < GestoreSetti.getModificatoArr().length; i++) {
-                Setto setto = GestoreSetti.getModificatoArr()[i];
-                aggiungiModificatoText("Stato MODIFICATO - setto n. " + (i + 1));
-                aggiungiModificatoText(setto.toString());
-                aggiungiModificatoText("--------------------------------------");
-            }
-
+            stampaSetti();
             calcolaBtn.setDisable(true);
+            modificaHBox.setDisable(false);
+            if (GestoreSetti.calcolaStatoVerificato()) {
+                statoLbl.setText("STATO MODIFICATO VERIFICATO");
+                statoLbl.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else {
+                statoLbl.setText("STATO MODIFICATO NON VERIFICATO");
+                statoLbl.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        }
+
+    }
+
+    private void calcolaBtnModificaSetto() {
+        Setto s = estraiSettoDaCampiInseriti();
+
+        if (s == null) {
+            return;
+        }
+
+        GestoreSetti.aggiornaSetto(s, settoMod, sceltaMod);
+        stampaSetti();
+        calcolaBtn.setDisable(true);
+    }
+
+    private void modificaBtnHandler() {
+        int numeroSetto;
+        String sceltaAttMod;
+        try {
+            numeroSetto = Integer.parseInt(settoField.getText());
+            sceltaAttMod = statoChoice.getValue().toString();
+
+            System.out.println(sceltaAttMod);
+
+            if (numeroSetto < 0) {
+                throw new Exception();
+            }
+            if (sceltaAttMod.equals("Attuale") && numeroSetto > GestoreSetti.getAttualeArr().length) {
+                throw new Exception();
+            }
+            if (sceltaAttMod.equals("Modificato") && numeroSetto > GestoreSetti.getModificatoArr().length) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            aggiungiLog("ERRORE: inserire un numero di setto valido");
+            return;
+        }
+
+        Setto settoDaModificare;
+        if (sceltaAttMod.equals("Attuale")) {
+            settoDaModificare = GestoreSetti.getAttualeArr()[numeroSetto - 1];
+        } else {
+            settoDaModificare = GestoreSetti.getModificatoArr()[numeroSetto - 1];
+        }
+
+        toField.setText(String.valueOf(settoDaModificare.getTo() * 10));
+        eField.setText(String.valueOf(settoDaModificare.getE() * 10));
+        gField.setText(String.valueOf(settoDaModificare.getG() * 10));
+        hField.setText(String.valueOf(settoDaModificare.getH()));
+        lField.setText(String.valueOf(settoDaModificare.getL()));
+        tField.setText(String.valueOf(settoDaModificare.getT()));
+        s0Field.setText(String.valueOf(settoDaModificare.getS0() * 10));
+        nField.setText(String.valueOf(settoDaModificare.getN()));
+
+        modificaMode = true;
+        settoMod = numeroSetto - 1;
+        sceltaMod = sceltaAttMod;
+
+        calcolaBtn.setDisable(false);
+
+    }
+
+    private void nuovoMenuHandler() {
+        aggiungiLog("\n");
+        reset();
+    }
+
+    private void salvaMenuHandler() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Setto Murario (*.set)", "*.set");
+        fileChooser.getExtensionFilters().add(extFilter);
+        Stage stage = new Stage();
+        File file = fileChooser.showSaveDialog(stage);
+
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(new StatoSalvato());
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void apriMenuHandler() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Setto Murario (*.set)", "*.set");
+        fileChooser.getExtensionFilters().add(extFilter);
+        Stage stage = new Stage();
+        File file = fileChooser.showOpenDialog(stage);
+
+        try {
+            ObjectInputStream oos = new ObjectInputStream(new FileInputStream(file));
+            StatoSalvato s = (StatoSalvato) oos.readObject();
+            GestoreSetti.caricaStatoSalvato(s);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
     }
