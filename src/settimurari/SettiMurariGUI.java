@@ -19,6 +19,8 @@ public class SettiMurariGUI extends Pane {
     private int settoMod;
     private String sceltaMod;
 
+    private File selectedFile;
+
     private final VBox vBox;
     private final MenuBar menuBar;
     private final Menu menu;
@@ -613,8 +615,24 @@ public class SettiMurariGUI extends Pane {
             salvaMenuHandler();
         });
 
+        salvaConNomeMenu.setOnAction(e -> {
+            salvaConNomeMenuHandler();
+        });
+
+        chiudiMenu.setOnAction(e -> {
+            chiudiMenuHandler();
+        });
+
         apriMenu.setOnAction(e -> {
             apriMenuHandler();
+        });
+
+        guidaMenu.setOnAction(e -> {
+            guidaMenuHandler();
+        });
+
+        infoMenu.setOnAction(e -> {
+            infoMenuHandler();
         });
     }
 
@@ -666,6 +684,9 @@ public class SettiMurariGUI extends Pane {
         statoLbl.setVisible(false);
         calcolaBtn.setDisable(false);
         modificaMode = false;
+        selectedFile = null;
+        salvaMenu.setDisable(true);
+        statoLbl.setVisible(false);
     }
 
     private void aggiungiLog(String s) {
@@ -695,14 +716,14 @@ public class SettiMurariGUI extends Pane {
         attualeText.setText("");
         modificatoText.setText("");
 
-        for (int i = 0; i < GestoreSetti.getAttualeArr().length; i++) {
+        for (int i = 0; i < GestoreSetti.getAttualeStage(); i++) {
             Setto setto = GestoreSetti.getAttualeArr()[i];
             aggiungiAttualeText("Stato ATTUALE - setto n. " + (i + 1));
             aggiungiAttualeText(setto.toString());
             aggiungiAttualeText("--------------------------------------");
         }
 
-        for (int i = 0; i < GestoreSetti.getModificatoArr().length; i++) {
+        for (int i = 0; i < GestoreSetti.getModificatoStage(); i++) {
             Setto setto = GestoreSetti.getModificatoArr()[i];
             aggiungiModificatoText("Stato MODIFICATO - setto n. " + (i + 1));
             aggiungiModificatoText(setto.toString());
@@ -734,13 +755,13 @@ public class SettiMurariGUI extends Pane {
     private Setto estraiSettoDaCampiInseriti() {
         double to, e, g, h = 0, l, t, s0, n;
         try {
-            to = Double.parseDouble(toField.getText().replace(",", ".")) / 10;
-            e = Double.parseDouble(eField.getText().replace(",", ".")) / 10;
-            g = Double.parseDouble(gField.getText().replace(",", ".")) / 10;
+            to = Double.parseDouble(toField.getText().replace(",", ".")) * 10;
+            e = Double.parseDouble(eField.getText().replace(",", ".")) * 10;
+            g = Double.parseDouble(gField.getText().replace(",", ".")) * 10;
             h = Double.parseDouble(hField.getText().replace(",", "."));
             l = Double.parseDouble(lField.getText().replace(",", "."));
             t = Double.parseDouble(tField.getText().replace(",", "."));
-            s0 = Double.parseDouble(s0Field.getText().replace(",", ".")) / 10;
+            s0 = Double.parseDouble(s0Field.getText().replace(",", ".")) * 10;
             n = Double.parseDouble(nField.getText().replace(",", "."));
 
             if (l <= h / 3) {
@@ -764,6 +785,22 @@ public class SettiMurariGUI extends Pane {
         return s;
     }
 
+    private void aggiornaGUICalcoloStatoVerificato() {
+        calcolaBtn.setDisable(true);
+        modificaHBox.setDisable(false);
+        if (GestoreSetti.calcolaStatoVerificato()) {
+            statoLbl.setText("STATO MODIFICATO VERIFICATO");
+            statoLbl.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        } else {
+            statoLbl.setText("STATO MODIFICATO NON VERIFICATO");
+            statoLbl.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+        stampaSetti();
+        aggiungiAttualeText(GestoreSetti.getConclusioniAttuale());
+        aggiungiModificatoText(GestoreSetti.getConclusioniModificato());
+        statoLbl.setVisible(true);
+    }
+
     private void calcolaBtnAggiungiSetto() {
 
         Setto s = estraiSettoDaCampiInseriti();
@@ -779,16 +816,7 @@ public class SettiMurariGUI extends Pane {
         clear();
 
         if (GestoreSetti.modificatoCompletato()) {
-            stampaSetti();
-            calcolaBtn.setDisable(true);
-            modificaHBox.setDisable(false);
-            if (GestoreSetti.calcolaStatoVerificato()) {
-                statoLbl.setText("STATO MODIFICATO VERIFICATO");
-                statoLbl.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-            } else {
-                statoLbl.setText("STATO MODIFICATO NON VERIFICATO");
-                statoLbl.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-            }
+            aggiornaGUICalcoloStatoVerificato();
         }
 
     }
@@ -800,9 +828,9 @@ public class SettiMurariGUI extends Pane {
             return;
         }
 
+        s.calcola();
         GestoreSetti.aggiornaSetto(s, settoMod, sceltaMod);
-        stampaSetti();
-        calcolaBtn.setDisable(true);
+        aggiornaGUICalcoloStatoVerificato();
     }
 
     private void modificaBtnHandler() {
@@ -835,13 +863,13 @@ public class SettiMurariGUI extends Pane {
             settoDaModificare = GestoreSetti.getModificatoArr()[numeroSetto - 1];
         }
 
-        toField.setText(String.valueOf(settoDaModificare.getTo() * 10));
-        eField.setText(String.valueOf(settoDaModificare.getE() * 10));
-        gField.setText(String.valueOf(settoDaModificare.getG() * 10));
+        toField.setText(String.valueOf(settoDaModificare.getT0() / 10));
+        eField.setText(String.valueOf(settoDaModificare.getE() / 10));
+        gField.setText(String.valueOf(settoDaModificare.getG() / 10));
         hField.setText(String.valueOf(settoDaModificare.getH()));
         lField.setText(String.valueOf(settoDaModificare.getL()));
         tField.setText(String.valueOf(settoDaModificare.getT()));
-        s0Field.setText(String.valueOf(settoDaModificare.getS0() * 10));
+        s0Field.setText(String.valueOf(settoDaModificare.getS0() / 10));
         nField.setText(String.valueOf(settoDaModificare.getN()));
 
         modificaMode = true;
@@ -858,37 +886,115 @@ public class SettiMurariGUI extends Pane {
     }
 
     private void salvaMenuHandler() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(selectedFile));
+            oos.writeObject(new StatoSalvato());
+            aggiungiLog("Salvataggio completato.");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private boolean salvaConNomeMenuHandler() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Setto Murario (*.set)", "*.set");
         fileChooser.getExtensionFilters().add(extFilter);
         Stage stage = new Stage();
         File file = fileChooser.showSaveDialog(stage);
+        if (file == null) {
+            return false;
+        }
 
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(new StatoSalvato());
-
+            aggiungiLog("Salvataggio completato.");
+            selectedFile = file;
+            salvaMenu.setDisable(false);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
+        return true;
     }
 
-    private void apriMenuHandler() {
+    private boolean apriMenuHandler() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Setto Murario (*.set)", "*.set");
         fileChooser.getExtensionFilters().add(extFilter);
         Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
-
+        if (file == null) {
+            return false;
+        }
         try {
             ObjectInputStream oos = new ObjectInputStream(new FileInputStream(file));
             StatoSalvato s = (StatoSalvato) oos.readObject();
+            aggiungiLog("Caricamento completato.");
             GestoreSetti.caricaStatoSalvato(s);
-
+            stampaSetti();
+            if (GestoreSetti.modificatoCompletato()) {
+                aggiornaGUICalcoloStatoVerificato();
+            }
+            salvaMenu.setDisable(false);
+            selectedFile = file;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return true;
+    }
 
+    public void close() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Setti Murari");
+        alert.setContentText("Salvare prima di uscire?");
+        ButtonType yesButton = new ButtonType("Si", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        ButtonType cancelButton = new ButtonType("Annulla", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(yesButton, noButton);
+        if (SettiMurari.chiudiMenuSelected) {
+            alert.getButtonTypes().addAll(cancelButton);
+        }
+        alert.showAndWait().ifPresent(type -> {
+            if (type == yesButton) {
+                System.out.println("YES");
+                if (selectedFile == null) {
+                    do {
+                    } while (!salvaConNomeMenuHandler());
+                } else {
+                    salvaMenuHandler();
+                }
+                System.exit(0);
+            } else if (type == noButton) {
+                System.out.println("NO");
+                System.exit(0);
+            } else {
+                System.out.println("CANCEL");
+            }
+        });
+    }
+
+    private void guidaMenuHandler() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Setti Murari");
+        alert.setContentText("Per copiare i dati, posizionarsi con il cursore su uno dei box. Premere CTRL-A per selezionare tutto il testo e CTRL-C per copiare i dati. Infine, incollare il testo su un editor di testo (Word) con CTRL-V.");
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
+    }
+
+    private void infoMenuHandler() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Informazioni su Setti Murari");
+        alert.setContentText("Calcolo setti murari (C) 2020 - by Marco Pettorali\n23/09/17 - v 1.0\n23/07/18 - v 2.0\n07/03/20 - v 3.0");
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(okButton);
+        alert.showAndWait();
+    }
+
+    private void chiudiMenuHandler() {
+        SettiMurari.chiudiMenuSelected = true;
+        close();
+        SettiMurari.chiudiMenuSelected = false;
     }
 }

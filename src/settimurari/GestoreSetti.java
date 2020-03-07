@@ -1,6 +1,7 @@
 package settimurari;
 
 import java.io.*;
+import java.text.DecimalFormat;
 
 public class GestoreSetti {
 
@@ -9,6 +10,18 @@ public class GestoreSetti {
 
     private static int attualeStage;
     private static int modificatoStage;
+
+    private static double vAttuale;
+    private static double vModificato;
+
+    private static double dAttuale;
+    private static double dModificato;
+
+    private static double kAttuale;
+    private static double kModificato;
+
+    private static int iAttuale;
+    private static int iModificato;
 
     static {
         attualeStage = 0;
@@ -83,7 +96,59 @@ public class GestoreSetti {
     }
 
     public static boolean calcolaStatoVerificato() {
-        return true;
+        dAttuale = attualeArr[0].getD();
+        iAttuale = 0;
+        for (int i = 0; i < attualeArr.length; i++) {
+            Setto s = attualeArr[i];
+            if (dAttuale < s.getD()) {
+                iAttuale = i;
+                dAttuale = s.getD();
+            }
+        }
+
+        dModificato = modificatoArr[0].getD();
+        iModificato = 0;
+        for (int i = 0; i < modificatoArr.length; i++) {
+            Setto s = modificatoArr[i];
+            if (dModificato < s.getD()) {
+                iModificato = i;
+                dModificato = s.getD();
+            }
+        }
+
+        vAttuale = 0;
+        kAttuale = 0;
+        for (Setto s : attualeArr) {
+            vAttuale += s.getK() * dAttuale;
+            kAttuale += s.getK();
+        }
+
+        vModificato = 0;
+        kModificato = 0;
+        for (Setto s : modificatoArr) {
+            vModificato += s.getK() * dModificato;
+            kModificato += s.getK();
+        }
+
+        if (vModificato >= vAttuale && dModificato >= dAttuale && 0.85 * kAttuale <= kModificato && kModificato <= 1.15 * kAttuale) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String getConclusioniAttuale() {
+        return ""
+                + "δo = " + new DecimalFormat("0.000").format(dAttuale) + " cm --> Setto n. " + (iAttuale+1) + "\n"
+                + "V dei setti = " + new DecimalFormat("0.000").format(vAttuale) + " daN" + "\n"
+                + "K dei setti = " + new DecimalFormat("0.000").format(kAttuale) + " daN/cm";
+    }
+    
+    public static String getConclusioniModificato() {
+        return ""
+                + "δo = " + new DecimalFormat("0.000").format(dModificato) + " cm --> Setto n. " + (iModificato+1) + "\n"
+                + "V dei setti = " + new DecimalFormat("0.000").format(vModificato) + " daN" + "\n"
+                + "K dei setti = " + new DecimalFormat("0.000").format(kModificato) + " daN/cm";
     }
 
     public static String getStageLog() {
@@ -107,6 +172,5 @@ public class GestoreSetti {
         for (int i = 0; i < s.getModificatoStage(); i++) {
             aggiungiSetto(s.getModificatoArr()[i]);
         }
-        
     }
 }

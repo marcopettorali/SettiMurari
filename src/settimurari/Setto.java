@@ -5,10 +5,10 @@ import java.text.*;
 
 public class Setto implements Serializable {
 
-    private double to, e, g, h, l, t, s0, n, v, j, k, d;
+    private double t0, e, g, h, l, t, s0, n, v, j, k, d;
 
-    public Setto(double to, double e, double g, double h, double l, double t, double s0, double n) {
-        this.to = to;
+    public Setto(double t0, double e, double g, double h, double l, double t, double s0, double n) {
+        this.t0 = t0;
         this.e = e;
         this.g = g;
         this.h = h;
@@ -18,8 +18,8 @@ public class Setto implements Serializable {
         this.n = n;
     }
 
-    public double getTo() {
-        return to;
+    public double getT0() {
+        return t0;
     }
 
     public double getE() {
@@ -50,6 +50,22 @@ public class Setto implements Serializable {
         return n;
     }
 
+    public double getV() {
+        return v;
+    }
+
+    public double getJ() {
+        return j;
+    }
+
+    public double getK() {
+        return k;
+    }
+
+    public double getD() {
+        return d;
+    }
+
     public void calcola() {
         double b = h / l;
         if (b < 1) {
@@ -57,7 +73,7 @@ public class Setto implements Serializable {
         } else if (b > 1.5) {
             b = 1.5;
         }
-        v = l * t * (1.5 * to / b) * Math.sqrt(1 + (s0 / (1.5 * to)));
+        v = l * t * (1.5 * t0 / b) * Math.sqrt(1 + (s0 / (1.5 * t0)));
         j = l * h * h * h / 12;
         k = 1 / ((h * h * h / (n * e * j)) + (1.2 * h / (g * l * t)));
         d = v / k;
@@ -66,19 +82,18 @@ public class Setto implements Serializable {
     @Override
     public String toString() {
         String ret = ""
-                + "to = " + to * 10 + " N/mmq\n"
-                + "e = " + e * 10 + " N/mmq\n"
-                + "g = " + g * 10 + " N/mmq\n"
+                + "𝜏o = " + t0 / 10 + " N/mmq\n"
+                + "E = " + e / 10 + " N/mmq\n"
+                + "G = " + g / 10 + " N/mmq\n"
                 + "h = " + h + " cm\n"
                 + "l = " + l + " cm\n"
                 + "t = " + t + " cm\n"
-                + "s0 = " + s0 * 10 + " N/mmq\n"
+                + "σo = " + s0 / 10 + " N/mmq\n"
                 + "n = " + n + "\n"
                 + "\n"
-                + "V = l * t * (1.5 * 𝜏o / b) * √(1 + (σ0 / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(v) + "\n"
-                + "J = l * h^3 / 12 = " + new DecimalFormat("0.00").format(j) + "\n"
-                + "K = 1 / ((h^3 / (n * E * J)) + (1.2 * h / (G * A) )) = " + new DecimalFormat("0.00").format(k) + "\n"
-                + "D = V/K = " + new DecimalFormat("0.00").format(d);
+                + "V = l * t * (1.5 * 𝜏o / b) * √(1 + (σo / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(v) + " daN\n"
+                + "K = 1 / ((h^3 / (n * E * J)) + (1.2 * h / (G * A) )) = " + new DecimalFormat("0.00").format(k) + " daN/cm\n"
+                + "δo = V/K = " + new DecimalFormat("0.00").format(d) + " cm";
         return ret;
     }
 
