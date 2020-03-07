@@ -37,7 +37,7 @@ public class SettiMurariGUI extends Pane {
     private final MenuItem infoMenu;
     private final VBox vBox0;
     private final HBox hBox;
-    private final VBox vBox1;
+    private final VBox calcolaVBox;
     private final VBox vBox2;
     private final Label label;
     private final GridPane gridPane;
@@ -133,7 +133,7 @@ public class SettiMurariGUI extends Pane {
         infoMenu = new MenuItem();
         vBox0 = new VBox();
         hBox = new HBox();
-        vBox1 = new VBox();
+        calcolaVBox = new VBox();
         vBox2 = new VBox();
         label = new Label();
         gridPane = new GridPane();
@@ -255,9 +255,9 @@ public class SettiMurariGUI extends Pane {
         hBox.setFillHeight(false);
         hBox.setSpacing(50.0);
 
-        vBox1.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-        vBox1.setFillWidth(false);
-        vBox1.setSpacing(20.0);
+        calcolaVBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        calcolaVBox.setFillWidth(false);
+        calcolaVBox.setSpacing(20.0);
 
         vBox2.setSpacing(20.0);
 
@@ -537,7 +537,7 @@ public class SettiMurariGUI extends Pane {
         gridPane.getChildren().add(label7);
         gridPane.getChildren().add(label8);
         vBox2.getChildren().add(gridPane);
-        vBox1.getChildren().add(vBox2);
+        calcolaVBox.getChildren().add(vBox2);
         vBox3.getChildren().add(label9);
         gridPane0.getChildren().add(label10);
         gridPane0.getChildren().add(label11);
@@ -559,7 +559,7 @@ public class SettiMurariGUI extends Pane {
         gridPane0.getRowConstraints().add(rowConstraints3);
         gridPane0.getRowConstraints().add(rowConstraints4);
         vBox3.getChildren().add(gridPane0);
-        vBox1.getChildren().add(vBox3);
+        calcolaVBox.getChildren().add(vBox3);
         vBox4.getChildren().add(label19);
         gridPane1.getChildren().add(label110);
         gridPane1.getChildren().add(label111);
@@ -576,10 +576,10 @@ public class SettiMurariGUI extends Pane {
         gridPane1.getRowConstraints().add(rowConstraints5);
         gridPane1.getRowConstraints().add(rowConstraints6);
         vBox4.getChildren().add(gridPane1);
-        vBox1.getChildren().add(vBox4);
+        calcolaVBox.getChildren().add(vBox4);
         hBox0.getChildren().add(calcolaBtn);
-        vBox1.getChildren().add(hBox0);
-        hBox.getChildren().add(vBox1);
+        calcolaVBox.getChildren().add(hBox0);
+        hBox.getChildren().add(calcolaVBox);
         vBox5.getChildren().add(label116);
         vBox5.getChildren().add(logText);
         modificaHBox.getChildren().add(label117);
@@ -682,7 +682,7 @@ public class SettiMurariGUI extends Pane {
 
         modificaHBox.setDisable(true);
         statoLbl.setVisible(false);
-        calcolaBtn.setDisable(false);
+        calcolaVBox.setDisable(false);
         modificaMode = false;
         selectedFile = null;
         salvaMenu.setDisable(true);
@@ -786,7 +786,7 @@ public class SettiMurariGUI extends Pane {
     }
 
     private void aggiornaGUICalcoloStatoVerificato() {
-        calcolaBtn.setDisable(true);
+        calcolaVBox.setDisable(true);
         modificaHBox.setDisable(false);
         if (GestoreSetti.calcolaStatoVerificato()) {
             statoLbl.setText("STATO MODIFICATO VERIFICATO");
@@ -876,7 +876,7 @@ public class SettiMurariGUI extends Pane {
         settoMod = numeroSetto - 1;
         sceltaMod = sceltaAttMod;
 
-        calcolaBtn.setDisable(false);
+        calcolaVBox.setDisable(false);
 
     }
 
