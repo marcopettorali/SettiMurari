@@ -21,102 +21,108 @@ public class SettiMurariGUI extends Pane {
 
     private File selectedFile;
 
-    private final VBox vBox;
-    private final MenuBar menuBar;
-    private final Menu menu;
-    private final MenuItem nuovoMenu;
-    private final SeparatorMenuItem separatorMenuItem;
-    private final MenuItem apriMenu;
-    private final SeparatorMenuItem separatorMenuItem0;
-    private final MenuItem salvaMenu;
-    private final MenuItem salvaConNomeMenu;
-    private final SeparatorMenuItem separatorMenuItem1;
-    private final MenuItem chiudiMenu;
-    private final Menu menu0;
-    private final MenuItem guidaMenu;
-    private final MenuItem infoMenu;
-    private final VBox vBox0;
-    private final HBox hBox;
-    private final VBox calcolaVBox;
-    private final VBox vBox2;
-    private final Label label;
-    private final GridPane gridPane;
-    private final ColumnConstraints columnConstraints;
-    private final ColumnConstraints columnConstraints0;
-    private final ColumnConstraints columnConstraints1;
-    private final ColumnConstraints columnConstraints2;
-    private final RowConstraints rowConstraints;
-    private final RowConstraints rowConstraints0;
-    private final RowConstraints rowConstraints1;
-    private final Label label0;
-    private final Label label1;
-    private final Label label2;
-    private final TextField toField;
-    private final TextField eField;
-    private final TextField gField;
-    private final Label label3;
-    private final Label label4;
-    private final Label label5;
-    private final Label label6;
-    private final Label label7;
-    private final Label label8;
-    private final VBox vBox3;
-    private final Label label9;
-    private final GridPane gridPane0;
-    private final Label label10;
-    private final Label label11;
-    private final Label label12;
-    private final TextField hField;
-    private final TextField lField;
-    private final TextField tField;
-    private final Label label13;
-    private final Label label14;
-    private final Label label15;
-    private final Label label16;
-    private final Label label17;
-    private final Label label18;
-    private final ColumnConstraints columnConstraints3;
-    private final ColumnConstraints columnConstraints4;
-    private final ColumnConstraints columnConstraints5;
-    private final ColumnConstraints columnConstraints6;
-    private final RowConstraints rowConstraints2;
-    private final RowConstraints rowConstraints3;
-    private final RowConstraints rowConstraints4;
-    private final VBox vBox4;
-    private final Label label19;
-    private final GridPane gridPane1;
-    private final Label label110;
-    private final Label label111;
-    private final TextField s0Field;
-    private final TextField nField;
-    private final Label label112;
-    private final Label label113;
-    private final Label label114;
-    private final Label label115;
-    private final ColumnConstraints columnConstraints7;
-    private final ColumnConstraints columnConstraints8;
-    private final ColumnConstraints columnConstraints9;
-    private final ColumnConstraints columnConstraints10;
-    private final RowConstraints rowConstraints5;
-    private final RowConstraints rowConstraints6;
-    private final HBox hBox0;
-    private final Button calcolaBtn;
-    private final VBox vBox5;
-    private final Label label116;
-    private final TextArea logText;
-    private final HBox modificaHBox;
-    private final Label label117;
-    private final TextField settoField;
-    private final Label label118;
-    private final ChoiceBox statoChoice;
-    private final Button modificaBtn;
-    private final HBox hBox2;
-    private final TextArea attualeText;
-    private final TextArea modificatoText;
-    private final Label statoLbl;
+    protected final Pane pane;
+    protected final VBox vBox;
+    protected final MenuBar menuBar;
+    protected final Menu menu;
+    protected final MenuItem nuovoMenu;
+    protected final SeparatorMenuItem separatorMenuItem;
+    protected final MenuItem apriMenu;
+    protected final SeparatorMenuItem separatorMenuItem0;
+    protected final MenuItem salvaMenu;
+    protected final MenuItem salvaConNomeMenu;
+    protected final SeparatorMenuItem separatorMenuItem1;
+    protected final MenuItem chiudiMenu;
+    protected final Menu menu0;
+    protected final MenuItem guidaMenu;
+    protected final MenuItem infoMenu;
+    protected final VBox vBox0;
+    protected final HBox hBox;
+    protected final VBox calcolaVBox;
+    protected final VBox vBox1;
+    protected final Label label;
+    protected final GridPane gridPane;
+    protected final ColumnConstraints columnConstraints;
+    protected final ColumnConstraints columnConstraints0;
+    protected final ColumnConstraints columnConstraints1;
+    protected final ColumnConstraints columnConstraints2;
+    protected final RowConstraints rowConstraints;
+    protected final RowConstraints rowConstraints0;
+    protected final RowConstraints rowConstraints1;
+    protected final Label label0;
+    protected final Label label1;
+    protected final Label label2;
+    protected final TextField toField;
+    protected final TextField eField;
+    protected final TextField gField;
+    protected final Label label3;
+    protected final Label label4;
+    protected final Label label5;
+    protected final Label label6;
+    protected final Label label7;
+    protected final Label label8;
+    protected final VBox vBox2;
+    protected final Label label9;
+    protected final GridPane gridPane0;
+    protected final Label label10;
+    protected final Label label11;
+    protected final Label label12;
+    protected final TextField hField;
+    protected final TextField lField;
+    protected final TextField tField;
+    protected final Label label13;
+    protected final Label label14;
+    protected final Label label15;
+    protected final Label label16;
+    protected final Label label17;
+    protected final Label label18;
+    protected final ColumnConstraints columnConstraints3;
+    protected final ColumnConstraints columnConstraints4;
+    protected final ColumnConstraints columnConstraints5;
+    protected final ColumnConstraints columnConstraints6;
+    protected final RowConstraints rowConstraints2;
+    protected final RowConstraints rowConstraints3;
+    protected final RowConstraints rowConstraints4;
+    protected final VBox vBox3;
+    protected final Label label19;
+    protected final GridPane gridPane1;
+    protected final Label label110;
+    protected final Label label111;
+    protected final TextField s0Field;
+    protected final TextField nField;
+    protected final Label label112;
+    protected final Label label113;
+    protected final Label label114;
+    protected final Label label115;
+    protected final Label label116;
+    protected final Label label117;
+    protected final TextField fmField;
+    protected final ColumnConstraints columnConstraints7;
+    protected final ColumnConstraints columnConstraints8;
+    protected final ColumnConstraints columnConstraints9;
+    protected final ColumnConstraints columnConstraints10;
+    protected final RowConstraints rowConstraints5;
+    protected final RowConstraints rowConstraints6;
+    protected final RowConstraints rowConstraints7;
+    protected final HBox hBox0;
+    protected final Button calcolaBtn;
+    protected final VBox vBox4;
+    protected final Label label118;
+    protected final TextArea logText;
+    protected final HBox modificaHBox;
+    protected final Label label119;
+    protected final TextField settoField;
+    protected final Label label1110;
+    protected final ChoiceBox statoChoice;
+    protected final Button modificaBtn;
+    protected final HBox hBox1;
+    protected final TextArea attualeText;
+    protected final TextArea modificatoText;
+    protected final Label statoLbl;
 
     public SettiMurariGUI() {
 
+        pane = new Pane();
         vBox = new VBox();
         menuBar = new MenuBar();
         menu = new Menu();
@@ -134,7 +140,7 @@ public class SettiMurariGUI extends Pane {
         vBox0 = new VBox();
         hBox = new HBox();
         calcolaVBox = new VBox();
-        vBox2 = new VBox();
+        vBox1 = new VBox();
         label = new Label();
         gridPane = new GridPane();
         columnConstraints = new ColumnConstraints();
@@ -156,7 +162,7 @@ public class SettiMurariGUI extends Pane {
         label6 = new Label();
         label7 = new Label();
         label8 = new Label();
-        vBox3 = new VBox();
+        vBox2 = new VBox();
         label9 = new Label();
         gridPane0 = new GridPane();
         label10 = new Label();
@@ -178,7 +184,7 @@ public class SettiMurariGUI extends Pane {
         rowConstraints2 = new RowConstraints();
         rowConstraints3 = new RowConstraints();
         rowConstraints4 = new RowConstraints();
-        vBox4 = new VBox();
+        vBox3 = new VBox();
         label19 = new Label();
         gridPane1 = new GridPane();
         label110 = new Label();
@@ -189,24 +195,28 @@ public class SettiMurariGUI extends Pane {
         label113 = new Label();
         label114 = new Label();
         label115 = new Label();
+        label116 = new Label();
+        label117 = new Label();
+        fmField = new TextField();
         columnConstraints7 = new ColumnConstraints();
         columnConstraints8 = new ColumnConstraints();
         columnConstraints9 = new ColumnConstraints();
         columnConstraints10 = new ColumnConstraints();
         rowConstraints5 = new RowConstraints();
         rowConstraints6 = new RowConstraints();
+        rowConstraints7 = new RowConstraints();
         hBox0 = new HBox();
         calcolaBtn = new Button();
-        vBox5 = new VBox();
-        label116 = new Label();
+        vBox4 = new VBox();
+        label118 = new Label();
         logText = new TextArea();
         modificaHBox = new HBox();
-        label117 = new Label();
+        label119 = new Label();
         settoField = new TextField();
-        label118 = new Label();
+        label1110 = new Label();
         statoChoice = new ChoiceBox();
         modificaBtn = new Button();
-        hBox2 = new HBox();
+        hBox1 = new HBox();
         attualeText = new TextArea();
         modificatoText = new TextArea();
         statoLbl = new Label();
@@ -257,15 +267,17 @@ public class SettiMurariGUI extends Pane {
 
         calcolaVBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
         calcolaVBox.setFillWidth(false);
+        calcolaVBox.setPrefHeight(444.0);
+        calcolaVBox.setPrefWidth(470.0);
         calcolaVBox.setSpacing(20.0);
 
-        vBox2.setSpacing(20.0);
+        vBox1.setSpacing(10.0);
 
-        label.setText("Caratteristiche meccaniche (Tabb. C8.5.I e C8.5.II NTC '18)");
+        label.setText("Caratteristiche meccaniche (Tabb. C8.5.I e C8.5.II NTC �18)");
         label.setFont(new Font("System Bold", 12.0));
 
         gridPane.setHgap(20.0);
-        gridPane.setVgap(10.0);
+        gridPane.setVgap(5.0);
 
         columnConstraints.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
         columnConstraints.setMinWidth(10.0);
@@ -295,10 +307,10 @@ public class SettiMurariGUI extends Pane {
         label0.setText("Resistenza a taglio della muratura");
 
         GridPane.setRowIndex(label1, 1);
-        label1.setText("Valore del modulo di elasticità normale");
+        label1.setText("Valore del modulo di elasticit� normale");
 
         GridPane.setRowIndex(label2, 2);
-        label2.setText("Valore del modulo di elasticità tangenziale");
+        label2.setText("Valore del modulo di elasticit� tangenziale");
 
         GridPane.setColumnIndex(toField, 2);
 
@@ -309,7 +321,7 @@ public class SettiMurariGUI extends Pane {
         GridPane.setRowIndex(gField, 2);
 
         GridPane.setColumnIndex(label3, 1);
-        label3.setText("𝜏o =");
+        label3.setText("?o =");
 
         GridPane.setColumnIndex(label4, 1);
         GridPane.setRowIndex(label4, 1);
@@ -330,13 +342,13 @@ public class SettiMurariGUI extends Pane {
         GridPane.setRowIndex(label8, 2);
         label8.setText("N/mmq");
 
-        vBox3.setSpacing(20.0);
+        vBox2.setSpacing(10.0);
 
         label9.setText("Caratteristiche geometriche del setto");
         label9.setFont(new Font("System Bold", 12.0));
 
         gridPane0.setHgap(20.0);
-        gridPane0.setVgap(10.0);
+        gridPane0.setVgap(5.0);
 
         label10.setText("Altezza");
 
@@ -401,54 +413,68 @@ public class SettiMurariGUI extends Pane {
         rowConstraints4.setMinHeight(USE_PREF_SIZE);
         rowConstraints4.setVgrow(javafx.scene.layout.Priority.SOMETIMES);
 
-        vBox4.setSpacing(20.0);
+        vBox3.setSpacing(10.0);
 
         label19.setText("Altri parametri");
         label19.setFont(new Font("System Bold", 12.0));
 
         gridPane1.setHgap(20.0);
-        gridPane1.setVgap(10.0);
+        gridPane1.setVgap(5.0);
 
         label110.setText("Tensione di compressione");
 
-        GridPane.setRowIndex(label111, 1);
+        GridPane.setRowIndex(label111, 2);
         label111.setText("Tipo di modellazione");
 
         GridPane.setColumnIndex(s0Field, 2);
 
         GridPane.setColumnIndex(nField, 2);
-        GridPane.setRowIndex(nField, 1);
+        GridPane.setRowIndex(nField, 2);
 
         GridPane.setColumnIndex(label112, 1);
-        label112.setText("σ0 =");
+        label112.setText("?o =");
 
         GridPane.setColumnIndex(label113, 1);
-        GridPane.setRowIndex(label113, 1);
+        GridPane.setRowIndex(label113, 2);
         label113.setText("n =");
 
         GridPane.setColumnIndex(label114, 3);
         label114.setText("N/mmq");
 
-        GridPane.setColumnIndex(label115, 3);
         GridPane.setRowIndex(label115, 1);
-        label115.setText("");
+        label115.setText("Resistenza media a compressione della muratura");
+
+        GridPane.setColumnIndex(label116, 1);
+        GridPane.setRowIndex(label116, 1);
+        label116.setText("fm =");
+
+        GridPane.setColumnIndex(label117, 3);
+        GridPane.setRowIndex(label117, 1);
+        label117.setText("N/mmq");
+
+        GridPane.setColumnIndex(fmField, 2);
+        GridPane.setRowIndex(fmField, 1);
 
         columnConstraints7.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
+        columnConstraints7.setMaxWidth(290.0);
         columnConstraints7.setMinWidth(10.0);
+        columnConstraints7.setPrefWidth(262.0);
 
         columnConstraints8.setHalignment(javafx.geometry.HPos.RIGHT);
         columnConstraints8.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
-        columnConstraints8.setMinWidth(10.0);
+        columnConstraints8.setMaxWidth(38.0);
+        columnConstraints8.setMinWidth(0.0);
+        columnConstraints8.setPrefWidth(28.0);
 
         columnConstraints9.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
         columnConstraints9.setMaxWidth(143.0);
         columnConstraints9.setMinWidth(0.0);
-        columnConstraints9.setPrefWidth(119.0);
+        columnConstraints9.setPrefWidth(79.0);
 
         columnConstraints10.setHgrow(javafx.scene.layout.Priority.SOMETIMES);
         columnConstraints10.setMaxWidth(66.0);
         columnConstraints10.setMinWidth(10.0);
-        columnConstraints10.setPrefWidth(46.0);
+        columnConstraints10.setPrefWidth(44.0);
 
         rowConstraints5.setMaxHeight(208.0);
         rowConstraints5.setMinHeight(USE_PREF_SIZE);
@@ -457,15 +483,18 @@ public class SettiMurariGUI extends Pane {
         rowConstraints6.setMinHeight(USE_PREF_SIZE);
         rowConstraints6.setVgrow(javafx.scene.layout.Priority.SOMETIMES);
 
+        rowConstraints7.setMinHeight(USE_PREF_SIZE);
+        rowConstraints7.setVgrow(javafx.scene.layout.Priority.SOMETIMES);
+
         hBox0.setAlignment(javafx.geometry.Pos.CENTER);
 
         calcolaBtn.setMnemonicParsing(false);
         calcolaBtn.setText("Calcola");
         calcolaBtn.setFont(new Font(18.0));
 
-        vBox5.setSpacing(20.0);
+        vBox4.setSpacing(20.0);
 
-        label116.setText("Log:");
+        label118.setText("Log:");
 
         logText.setEditable(false);
         logText.setPrefHeight(356.0);
@@ -474,34 +503,27 @@ public class SettiMurariGUI extends Pane {
         modificaHBox.setAlignment(javafx.geometry.Pos.CENTER);
         modificaHBox.setSpacing(10.0);
 
-        label117.setText("Setto n.");
+        label119.setText("Setto n.");
 
-        label118.setText("Stato:");
+        label1110.setText("Stato:");
 
         statoChoice.setPrefWidth(150.0);
-        List<String> list = new ArrayList<>();
-        list.add("Attuale");
-        list.add("Modificato");
-        statoChoice.setItems(FXCollections.observableArrayList((list)));
 
         modificaBtn.setMnemonicParsing(false);
         modificaBtn.setText("Modifica");
 
-        hBox2.setAlignment(javafx.geometry.Pos.CENTER);
-        hBox2.setSpacing(64.0);
+        hBox1.setAlignment(javafx.geometry.Pos.CENTER);
+        hBox1.setSpacing(64.0);
 
         attualeText.setEditable(false);
 
         modificatoText.setEditable(false);
         modificatoText.setPrefHeight(349.0);
         modificatoText.setPrefWidth(465.0);
-        VBox.setMargin(hBox2, new Insets(0.0));
-        hBox2.setPadding(new Insets(20.0, 0.0, 20.0, 0.0));
+        VBox.setMargin(hBox1, new Insets(0.0));
+        hBox1.setPadding(new Insets(20.0, 0.0, 20.0, 0.0));
 
         statoLbl.setText("Stato");
-        statoLbl.setTextFill(Color.WHITE);
-        statoLbl.setFont(new Font("System Bold", 12.0));
-        VBox.setMargin(vBox0, new Insets(20.0));
 
         menu.getItems().add(nuovoMenu);
         menu.getItems().add(separatorMenuItem);
@@ -516,7 +538,7 @@ public class SettiMurariGUI extends Pane {
         menu0.getItems().add(infoMenu);
         menuBar.getMenus().add(menu0);
         vBox.getChildren().add(menuBar);
-        vBox2.getChildren().add(label);
+        vBox1.getChildren().add(label);
         gridPane.getColumnConstraints().add(columnConstraints);
         gridPane.getColumnConstraints().add(columnConstraints0);
         gridPane.getColumnConstraints().add(columnConstraints1);
@@ -536,9 +558,9 @@ public class SettiMurariGUI extends Pane {
         gridPane.getChildren().add(label6);
         gridPane.getChildren().add(label7);
         gridPane.getChildren().add(label8);
-        vBox2.getChildren().add(gridPane);
-        calcolaVBox.getChildren().add(vBox2);
-        vBox3.getChildren().add(label9);
+        vBox1.getChildren().add(gridPane);
+        calcolaVBox.getChildren().add(vBox1);
+        vBox2.getChildren().add(label9);
         gridPane0.getChildren().add(label10);
         gridPane0.getChildren().add(label11);
         gridPane0.getChildren().add(label12);
@@ -558,9 +580,9 @@ public class SettiMurariGUI extends Pane {
         gridPane0.getRowConstraints().add(rowConstraints2);
         gridPane0.getRowConstraints().add(rowConstraints3);
         gridPane0.getRowConstraints().add(rowConstraints4);
-        vBox3.getChildren().add(gridPane0);
-        calcolaVBox.getChildren().add(vBox3);
-        vBox4.getChildren().add(label19);
+        vBox2.getChildren().add(gridPane0);
+        calcolaVBox.getChildren().add(vBox2);
+        vBox3.getChildren().add(label19);
         gridPane1.getChildren().add(label110);
         gridPane1.getChildren().add(label111);
         gridPane1.getChildren().add(s0Field);
@@ -569,34 +591,42 @@ public class SettiMurariGUI extends Pane {
         gridPane1.getChildren().add(label113);
         gridPane1.getChildren().add(label114);
         gridPane1.getChildren().add(label115);
+        gridPane1.getChildren().add(label116);
+        gridPane1.getChildren().add(label117);
+        gridPane1.getChildren().add(fmField);
         gridPane1.getColumnConstraints().add(columnConstraints7);
         gridPane1.getColumnConstraints().add(columnConstraints8);
         gridPane1.getColumnConstraints().add(columnConstraints9);
         gridPane1.getColumnConstraints().add(columnConstraints10);
         gridPane1.getRowConstraints().add(rowConstraints5);
         gridPane1.getRowConstraints().add(rowConstraints6);
-        vBox4.getChildren().add(gridPane1);
-        calcolaVBox.getChildren().add(vBox4);
+        gridPane1.getRowConstraints().add(rowConstraints7);
+        vBox3.getChildren().add(gridPane1);
+        calcolaVBox.getChildren().add(vBox3);
         hBox0.getChildren().add(calcolaBtn);
         calcolaVBox.getChildren().add(hBox0);
         hBox.getChildren().add(calcolaVBox);
-        vBox5.getChildren().add(label116);
-        vBox5.getChildren().add(logText);
-        modificaHBox.getChildren().add(label117);
+        vBox4.getChildren().add(label118);
+        vBox4.getChildren().add(logText);
+        modificaHBox.getChildren().add(label119);
         modificaHBox.getChildren().add(settoField);
-        modificaHBox.getChildren().add(label118);
+        modificaHBox.getChildren().add(label1110);
         modificaHBox.getChildren().add(statoChoice);
         modificaHBox.getChildren().add(modificaBtn);
-        vBox5.getChildren().add(modificaHBox);
-        hBox.getChildren().add(vBox5);
+        vBox4.getChildren().add(modificaHBox);
+        hBox.getChildren().add(vBox4);
         vBox0.getChildren().add(hBox);
-        hBox2.getChildren().add(attualeText);
-        hBox2.getChildren().add(modificatoText);
-        vBox0.getChildren().add(hBox2);
+        hBox1.getChildren().add(attualeText);
+        hBox1.getChildren().add(modificatoText);
+        vBox0.getChildren().add(hBox1);
         vBox0.getChildren().add(statoLbl);
         vBox.getChildren().add(vBox0);
-        getChildren().add(vBox);
+        pane.getChildren().add(vBox);
+        getChildren().add(pane);
+        setupButtonsAndMenu();
+    }
 
+    private void setupButtonsAndMenu() {
         //BUTTONS
         calcolaBtn.setOnAction(e -> {
             calcolaBtnHandler();
@@ -753,7 +783,7 @@ public class SettiMurariGUI extends Pane {
     }
 
     private Setto estraiSettoDaCampiInseriti() {
-        double to, e, g, h = 0, l, t, s0, n;
+        double to, e, g, h = 0, l, t, s0, fm, n;
         try {
             to = Double.parseDouble(toField.getText().replace(",", ".")) * 10;
             e = Double.parseDouble(eField.getText().replace(",", ".")) * 10;
@@ -762,18 +792,22 @@ public class SettiMurariGUI extends Pane {
             l = Double.parseDouble(lField.getText().replace(",", "."));
             t = Double.parseDouble(tField.getText().replace(",", "."));
             s0 = Double.parseDouble(s0Field.getText().replace(",", ".")) * 10;
+            fm = Double.parseDouble(fmField.getText().replace(",", ".")) * 10;
             n = Double.parseDouble(nField.getText().replace(",", "."));
 
+            if (n != 3 && n != 12) {
+                aggiungiLog("ATTENZIONE: valore inserito di n diverso da 3 o 12");
+            }
             if (l <= h / 3) {
                 throw new Exception("base");
             }
-            if (to < 0 || e < 0 || g < 0 || h < 0 || l < 0 || t < 0 | s0 < 0 || n < 0) {
+            if (to < 0 || e < 0 || g < 0 || h < 0 || l < 0 || t < 0 | s0 < 0 || fm < 0 || n < 0) {
                 throw new Exception("negativo");
             }
         } catch (Exception ex) {
             if (ex.getMessage().equals("base")) {
                 aggiungiLog("ERRORE: inserire un valore di lunghezza maggiore di h/3 = " + h / 3);
-            } else if (ex.getMessage().equals("base")) {
+            } else if (ex.getMessage().equals("negativo")) {
                 aggiungiLog("ERRORE: inserire un valore positivo");
             } else {
                 aggiungiLog("ERRORE: valore inserito non numerico.");
@@ -781,7 +815,7 @@ public class SettiMurariGUI extends Pane {
             return null;
         }
 
-        Setto s = new Setto(to, e, g, h, l, t, s0, n);
+        Setto s = new Setto(to, e, g, h, l, t, s0, fm, n);
         return s;
     }
 

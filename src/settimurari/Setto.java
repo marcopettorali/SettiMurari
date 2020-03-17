@@ -5,9 +5,9 @@ import java.text.*;
 
 public class Setto implements Serializable {
 
-    private double t0, e, g, h, l, t, s0, n, v, j, k, d;
+    private double t0, e, g, h, l, t, s0, fm, n, vt, j, k, de, vpf, mu, du;
 
-    public Setto(double t0, double e, double g, double h, double l, double t, double s0, double n) {
+    public Setto(double t0, double e, double g, double h, double l, double t, double s0, double fm, double n) {
         this.t0 = t0;
         this.e = e;
         this.g = g;
@@ -51,7 +51,7 @@ public class Setto implements Serializable {
     }
 
     public double getV() {
-        return v;
+        return vt;
     }
 
     public double getJ() {
@@ -62,8 +62,24 @@ public class Setto implements Serializable {
         return k;
     }
 
-    public double getD() {
-        return d;
+    public double getDe() {
+        return de;
+    }
+
+    public double getVt() {
+        return vt;
+    }
+
+    public double getVpf() {
+        return vpf;
+    }
+
+    public double getMu() {
+        return mu;
+    }
+
+    public double getDu() {
+        return du;
     }
 
     public void calcola() {
@@ -73,10 +89,31 @@ public class Setto implements Serializable {
         } else if (b > 1.5) {
             b = 1.5;
         }
-        v = l * t * (1.5 * t0 / b) * Math.sqrt(1 + (s0 / (1.5 * t0)));
+        vt = l * t * (1.5 * t0 / b) * Math.sqrt(1 + (s0 / (1.5 * t0)));
         j = l * h * h * h / 12;
         k = 1 / ((h * h * h / (n * e * j)) + (1.2 * h / (g * l * t)));
-        d = v / k;
+        de = vt / k;
+
+        double Mu = (s0 * t * l * l / 2) * (1 - s0 / (0.85 * fm));
+
+        if (n == 3) {
+            vpf = Mu / h;
+        } else if (n == 12) {
+            vpf = 2 * Mu / h;
+        } else {
+            vpf = 0;
+        }
+
+        double vu = (vt < vpf) ? vt : vpf;
+        mu = (vu == vt) ? 1.5 : 2;
+        double mu_max = (vu == vt) ? 0.004 : 0.006;
+
+        du = de * mu;
+        double du_max = mu_max * h;
+        if(du > du_max){
+            du = du_max;
+        }
+        
     }
 
     @Override
@@ -89,11 +126,12 @@ public class Setto implements Serializable {
                 + "l = " + l + " cm\n"
                 + "t = " + t + " cm\n"
                 + "σo = " + s0 / 10 + " N/mmq\n"
+                + "fm = " + fm / 10 + " N/mmq\n"
                 + "n = " + n + "\n"
                 + "\n"
-                + "V = l * t * (1.5 * 𝜏o / b) * √(1 + (σo / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(v) + " daN\n"
+                + "Vt = l * t * (1.5 * 𝜏o / b) * √(1 + (σo / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(vt) + " daN\n"
                 + "K = 1 / ((h^3 / (n * E * J)) + (1.2 * h / (G * A) )) = " + new DecimalFormat("0.00").format(k) + " daN/cm\n"
-                + "δo = V/K = " + new DecimalFormat("0.00").format(d) + " cm";
+                + "δo = V/K = " + new DecimalFormat("0.00").format(de) + " cm";
         return ret;
     }
 

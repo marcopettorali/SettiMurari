@@ -96,23 +96,23 @@ public class GestoreSetti {
     }
 
     public static boolean calcolaStatoVerificato() {
-        dAttuale = attualeArr[0].getD();
+        dAttuale = attualeArr[0].getDu();
         iAttuale = 0;
         for (int i = 0; i < attualeArr.length; i++) {
             Setto s = attualeArr[i];
-            if (dAttuale < s.getD()) {
+            if (dAttuale < s.getDu()) {
                 iAttuale = i;
-                dAttuale = s.getD();
+                dAttuale = s.getDu();
             }
         }
 
-        dModificato = modificatoArr[0].getD();
+        dModificato = modificatoArr[0].getDu();
         iModificato = 0;
         for (int i = 0; i < modificatoArr.length; i++) {
             Setto s = modificatoArr[i];
-            if (dModificato < s.getD()) {
+            if (dModificato < s.getDu()) {
                 iModificato = i;
-                dModificato = s.getD();
+                dModificato = s.getDu();
             }
         }
 
@@ -139,15 +139,15 @@ public class GestoreSetti {
 
     public static String getConclusioniAttuale() {
         return ""
-                + "δo = " + new DecimalFormat("0.000").format(dAttuale) + " cm --> Setto n. " + (iAttuale+1) + "\n"
-                + "V dei setti = " + new DecimalFormat("0.000").format(vAttuale) + " daN" + "\n"
+                + "δu = " + new DecimalFormat("0.000").format(dAttuale) + " cm --> Setto n. " + (iAttuale+1) + "\n"
+                + "Vt dei setti = " + new DecimalFormat("0.000").format(vAttuale) + " daN" + "\n"
                 + "K dei setti = " + new DecimalFormat("0.000").format(kAttuale) + " daN/cm";
     }
     
     public static String getConclusioniModificato() {
         return ""
-                + "δo = " + new DecimalFormat("0.000").format(dModificato) + " cm --> Setto n. " + (iModificato+1) + "\n"
-                + "V dei setti = " + new DecimalFormat("0.000").format(vModificato) + " daN" + "\n"
+                + "δu = " + new DecimalFormat("0.000").format(dModificato) + " cm --> Setto n. " + (iModificato+1) + "\n"
+                + "Vt dei setti = " + new DecimalFormat("0.000").format(vModificato) + " daN" + "\n"
                 + "K dei setti = " + new DecimalFormat("0.000").format(kModificato) + " daN/cm";
     }
 
