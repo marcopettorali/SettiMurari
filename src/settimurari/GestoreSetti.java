@@ -1,6 +1,5 @@
 package settimurari;
 
-import java.io.*;
 import java.text.DecimalFormat;
 
 public class GestoreSetti {
@@ -173,4 +172,5 @@ public class GestoreSetti {
             aggiungiSetto(s.getModificatoArr()[i]);
         }
     }
+    
 }

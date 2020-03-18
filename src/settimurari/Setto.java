@@ -5,7 +5,7 @@ import java.text.*;
 
 public class Setto implements Serializable {
 
-    private double t0, e, g, h, l, t, s0, fm, n, vt, j, k, de, vpf, mu, du;
+    private double t0, e, g, h, l, t, s0, fm, n, vt, j, k, de, bigMu ,vpf, mu, du;
 
     public Setto(double t0, double e, double g, double h, double l, double t, double s0, double fm, double n) {
         this.t0 = t0;
@@ -82,6 +82,14 @@ public class Setto implements Serializable {
         return du;
     }
 
+    public double getFm() {
+        return fm;
+    }
+
+    public double getBigMu() {
+        return bigMu;
+    }
+
     public void calcola() {
         double b = h / l;
         if (b < 1) {
@@ -94,12 +102,12 @@ public class Setto implements Serializable {
         k = 1 / ((h * h * h / (n * e * j)) + (1.2 * h / (g * l * t)));
         de = vt / k;
 
-        double Mu = (s0 * t * l * l / 2) * (1 - s0 / (0.85 * fm));
+        bigMu = (s0 * t * l * l / 2) * (1 - s0 / (0.85 * fm));
 
         if (n == 3) {
-            vpf = Mu / h;
+            vpf = bigMu / h;
         } else if (n == 12) {
-            vpf = 2 * Mu / h;
+            vpf = 2 * bigMu / h;
         } else {
             vpf = 0;
         }
@@ -129,9 +137,12 @@ public class Setto implements Serializable {
                 + "fm = " + fm / 10 + " N/mmq\n"
                 + "n = " + n + "\n"
                 + "\n"
-                + "Vt = l * t * (1.5 * 𝜏o / b) * √(1 + (σo / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(vt) + " daN\n"
+                + "Vt = l * t * (1.5 * 𝜏0 / b) * √(1 + (σo / (1.5 * 𝜏o))) = " + new DecimalFormat("0.00").format(vt) + "\n"
                 + "K = 1 / ((h^3 / (n * E * J)) + (1.2 * h / (G * A) )) = " + new DecimalFormat("0.00").format(k) + " daN/cm\n"
-                + "δo = V/K = " + new DecimalFormat("0.00").format(de) + " cm";
+                + "δe = Vt/K = " + new DecimalFormat("0.00").format(de) + " cm\n"
+                + "Mu = (s0 * t * l * l / 2) * (1 - s0 / (0.85 * fm)) = " + new DecimalFormat("0.00").format(bigMu) + "daN*cm\n"
+                + "μ = " + mu + "\n"
+                + "δu = δe * μ = " + new DecimalFormat("0.00").format(du) + "";
         return ret;
     }
 

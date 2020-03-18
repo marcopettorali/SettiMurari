@@ -1,10 +1,6 @@
 package settimurari;
 
 import java.io.*;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.*;
 import javafx.geometry.*;
 import javafx.scene.text.*;
 import javafx.scene.control.*;
@@ -21,7 +17,7 @@ public class SettiMurariGUI extends Pane {
 
     private File selectedFile;
 
-    protected final Pane pane;
+     protected final Pane pane;
     protected final VBox vBox;
     protected final MenuBar menuBar;
     protected final Menu menu;
@@ -226,6 +222,7 @@ public class SettiMurariGUI extends Pane {
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
 
+
         menu.setMnemonicParsing(false);
         menu.setText("File");
 
@@ -273,7 +270,7 @@ public class SettiMurariGUI extends Pane {
 
         vBox1.setSpacing(10.0);
 
-        label.setText("Caratteristiche meccaniche (Tabb. C8.5.I e C8.5.II NTC �18)");
+        label.setText("Caratteristiche meccaniche (Tabb. C8.5.I e C8.5.II NTC '18)");
         label.setFont(new Font("System Bold", 12.0));
 
         gridPane.setHgap(20.0);
@@ -307,10 +304,10 @@ public class SettiMurariGUI extends Pane {
         label0.setText("Resistenza a taglio della muratura");
 
         GridPane.setRowIndex(label1, 1);
-        label1.setText("Valore del modulo di elasticit� normale");
+        label1.setText("Valore del modulo di elasticità normale");
 
         GridPane.setRowIndex(label2, 2);
-        label2.setText("Valore del modulo di elasticit� tangenziale");
+        label2.setText("Valore del modulo di elasticità tangenziale");
 
         GridPane.setColumnIndex(toField, 2);
 
@@ -321,7 +318,7 @@ public class SettiMurariGUI extends Pane {
         GridPane.setRowIndex(gField, 2);
 
         GridPane.setColumnIndex(label3, 1);
-        label3.setText("?o =");
+        label3.setText("τo =");
 
         GridPane.setColumnIndex(label4, 1);
         GridPane.setRowIndex(label4, 1);
@@ -432,7 +429,7 @@ public class SettiMurariGUI extends Pane {
         GridPane.setRowIndex(nField, 2);
 
         GridPane.setColumnIndex(label112, 1);
-        label112.setText("?o =");
+        label112.setText("σo =");
 
         GridPane.setColumnIndex(label113, 1);
         GridPane.setRowIndex(label113, 2);
@@ -991,7 +988,6 @@ public class SettiMurariGUI extends Pane {
         }
         alert.showAndWait().ifPresent(type -> {
             if (type == yesButton) {
-                System.out.println("YES");
                 if (selectedFile == null) {
                     do {
                     } while (!salvaConNomeMenuHandler());
@@ -1000,10 +996,7 @@ public class SettiMurariGUI extends Pane {
                 }
                 System.exit(0);
             } else if (type == noButton) {
-                System.out.println("NO");
                 System.exit(0);
-            } else {
-                System.out.println("CANCEL");
             }
         });
     }
