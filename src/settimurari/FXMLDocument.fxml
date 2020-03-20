@@ -40,7 +40,7 @@
                      <children>
                         <HBox alignment="CENTER" fillHeight="false" spacing="50.0">
                            <children>
-                              <VBox fx:id="calcolaVBox" alignment="CENTER_LEFT" fillWidth="false" prefHeight="444.0" prefWidth="470.0" spacing="20.0">
+                              <VBox fx:id="calcolaVBox" alignment="CENTER_LEFT" fillWidth="false" spacing="20.0">
                                  <children>
                                     <VBox spacing="10.0">
                                        <children>
@@ -124,15 +124,15 @@
                                           <GridPane hgap="20.0" vgap="5.0">
                                              <children>
                                                 <Label text="Tensione di compressione" />
-                                                <Label text="Tipo di modellazione" GridPane.rowIndex="2" />
+                                                <Label text="Tipo di modellazione" GridPane.rowIndex="3" />
                                                 <TextField fx:id="s0Field" GridPane.columnIndex="2" />
-                                                <TextField fx:id="nField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                 <Label text="σo =" GridPane.columnIndex="1" />
-                                                <Label text="n =" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="n =" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <Label text="N/mmq" GridPane.columnIndex="3" />
                                                 <Label text="Resistenza media a compressione della muratura" GridPane.rowIndex="1" />
                                                 <Label text="fm =" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <Label text="N/mmq" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                <TextField fx:id="nField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                                 <TextField fx:id="fmField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                              </children>
                                              <columnConstraints>
@@ -143,6 +143,7 @@
                                              </columnConstraints>
                                              <rowConstraints>
                                                 <RowConstraints maxHeight="208.0" minHeight="-Infinity" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
                                                 <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
                                              </rowConstraints>
@@ -163,7 +164,7 @@
                               <VBox spacing="20.0">
                                  <children>
                                     <Label text="Log:" />
-                                    <TextArea fx:id="logText" editable="false" prefHeight="356.0" prefWidth="465.0" />
+                                    <TextArea fx:id="logText" editable="false" prefHeight="356.0" />
                                     <HBox fx:id="modificaHBox" alignment="CENTER" spacing="10.0">
                                        <children>
                                           <Label text="Setto n." />

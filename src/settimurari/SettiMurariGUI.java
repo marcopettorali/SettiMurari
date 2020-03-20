@@ -1,6 +1,8 @@
 package settimurari;
 
 import java.io.*;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
 import javafx.geometry.*;
 import javafx.scene.text.*;
 import javafx.scene.control.*;
@@ -17,7 +19,7 @@ public class SettiMurariGUI extends Pane {
 
     private File selectedFile;
 
-     protected final Pane pane;
+    protected final Pane pane;
     protected final VBox vBox;
     protected final MenuBar menuBar;
     protected final Menu menu;
@@ -85,13 +87,13 @@ public class SettiMurariGUI extends Pane {
     protected final Label label110;
     protected final Label label111;
     protected final TextField s0Field;
-    protected final TextField nField;
     protected final Label label112;
     protected final Label label113;
     protected final Label label114;
     protected final Label label115;
     protected final Label label116;
     protected final Label label117;
+    protected final TextField nField;
     protected final TextField fmField;
     protected final ColumnConstraints columnConstraints7;
     protected final ColumnConstraints columnConstraints8;
@@ -100,6 +102,7 @@ public class SettiMurariGUI extends Pane {
     protected final RowConstraints rowConstraints5;
     protected final RowConstraints rowConstraints6;
     protected final RowConstraints rowConstraints7;
+    protected final RowConstraints rowConstraints8;
     protected final HBox hBox0;
     protected final Button calcolaBtn;
     protected final VBox vBox4;
@@ -186,13 +189,13 @@ public class SettiMurariGUI extends Pane {
         label110 = new Label();
         label111 = new Label();
         s0Field = new TextField();
-        nField = new TextField();
         label112 = new Label();
         label113 = new Label();
         label114 = new Label();
         label115 = new Label();
         label116 = new Label();
         label117 = new Label();
+        nField = new TextField();
         fmField = new TextField();
         columnConstraints7 = new ColumnConstraints();
         columnConstraints8 = new ColumnConstraints();
@@ -201,6 +204,7 @@ public class SettiMurariGUI extends Pane {
         rowConstraints5 = new RowConstraints();
         rowConstraints6 = new RowConstraints();
         rowConstraints7 = new RowConstraints();
+        rowConstraints8 = new RowConstraints();
         hBox0 = new HBox();
         calcolaBtn = new Button();
         vBox4 = new VBox();
@@ -221,7 +225,6 @@ public class SettiMurariGUI extends Pane {
         setMaxWidth(USE_PREF_SIZE);
         setMinHeight(USE_PREF_SIZE);
         setMinWidth(USE_PREF_SIZE);
-
 
         menu.setMnemonicParsing(false);
         menu.setText("File");
@@ -264,8 +267,6 @@ public class SettiMurariGUI extends Pane {
 
         calcolaVBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
         calcolaVBox.setFillWidth(false);
-        calcolaVBox.setPrefHeight(444.0);
-        calcolaVBox.setPrefWidth(470.0);
         calcolaVBox.setSpacing(20.0);
 
         vBox1.setSpacing(10.0);
@@ -318,7 +319,7 @@ public class SettiMurariGUI extends Pane {
         GridPane.setRowIndex(gField, 2);
 
         GridPane.setColumnIndex(label3, 1);
-        label3.setText("τo =");
+        label3.setText("𝜏o =");
 
         GridPane.setColumnIndex(label4, 1);
         GridPane.setRowIndex(label4, 1);
@@ -420,19 +421,16 @@ public class SettiMurariGUI extends Pane {
 
         label110.setText("Tensione di compressione");
 
-        GridPane.setRowIndex(label111, 2);
+        GridPane.setRowIndex(label111, 3);
         label111.setText("Tipo di modellazione");
 
         GridPane.setColumnIndex(s0Field, 2);
-
-        GridPane.setColumnIndex(nField, 2);
-        GridPane.setRowIndex(nField, 2);
 
         GridPane.setColumnIndex(label112, 1);
         label112.setText("σo =");
 
         GridPane.setColumnIndex(label113, 1);
-        GridPane.setRowIndex(label113, 2);
+        GridPane.setRowIndex(label113, 3);
         label113.setText("n =");
 
         GridPane.setColumnIndex(label114, 3);
@@ -448,6 +446,9 @@ public class SettiMurariGUI extends Pane {
         GridPane.setColumnIndex(label117, 3);
         GridPane.setRowIndex(label117, 1);
         label117.setText("N/mmq");
+
+        GridPane.setColumnIndex(nField, 2);
+        GridPane.setRowIndex(nField, 3);
 
         GridPane.setColumnIndex(fmField, 2);
         GridPane.setRowIndex(fmField, 1);
@@ -483,6 +484,9 @@ public class SettiMurariGUI extends Pane {
         rowConstraints7.setMinHeight(USE_PREF_SIZE);
         rowConstraints7.setVgrow(javafx.scene.layout.Priority.SOMETIMES);
 
+        rowConstraints8.setMinHeight(USE_PREF_SIZE);
+        rowConstraints8.setVgrow(javafx.scene.layout.Priority.SOMETIMES);
+
         hBox0.setAlignment(javafx.geometry.Pos.CENTER);
 
         calcolaBtn.setMnemonicParsing(false);
@@ -495,7 +499,6 @@ public class SettiMurariGUI extends Pane {
 
         logText.setEditable(false);
         logText.setPrefHeight(356.0);
-        logText.setPrefWidth(465.0);
 
         modificaHBox.setAlignment(javafx.geometry.Pos.CENTER);
         modificaHBox.setSpacing(10.0);
@@ -505,6 +508,10 @@ public class SettiMurariGUI extends Pane {
         label1110.setText("Stato:");
 
         statoChoice.setPrefWidth(150.0);
+        ArrayList<String> items = new ArrayList<>();
+        items.add("Attuale");
+        items.add("Modificato");
+        statoChoice.setItems(FXCollections.observableArrayList(items));
 
         modificaBtn.setMnemonicParsing(false);
         modificaBtn.setText("Modifica");
@@ -583,7 +590,6 @@ public class SettiMurariGUI extends Pane {
         gridPane1.getChildren().add(label110);
         gridPane1.getChildren().add(label111);
         gridPane1.getChildren().add(s0Field);
-        gridPane1.getChildren().add(nField);
         gridPane1.getChildren().add(label112);
         gridPane1.getChildren().add(label113);
         gridPane1.getChildren().add(label114);
@@ -591,6 +597,8 @@ public class SettiMurariGUI extends Pane {
         gridPane1.getChildren().add(label116);
         gridPane1.getChildren().add(label117);
         gridPane1.getChildren().add(fmField);
+        gridPane1.getChildren().add(nField);
+
         gridPane1.getColumnConstraints().add(columnConstraints7);
         gridPane1.getColumnConstraints().add(columnConstraints8);
         gridPane1.getColumnConstraints().add(columnConstraints9);
@@ -598,6 +606,7 @@ public class SettiMurariGUI extends Pane {
         gridPane1.getRowConstraints().add(rowConstraints5);
         gridPane1.getRowConstraints().add(rowConstraints6);
         gridPane1.getRowConstraints().add(rowConstraints7);
+        gridPane1.getRowConstraints().add(rowConstraints8);
         vBox3.getChildren().add(gridPane1);
         calcolaVBox.getChildren().add(vBox3);
         hBox0.getChildren().add(calcolaBtn);
@@ -620,6 +629,7 @@ public class SettiMurariGUI extends Pane {
         vBox.getChildren().add(vBox0);
         pane.getChildren().add(vBox);
         getChildren().add(pane);
+
         setupButtonsAndMenu();
     }
 
