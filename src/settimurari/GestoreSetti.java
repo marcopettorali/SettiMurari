@@ -139,14 +139,14 @@ public class GestoreSetti {
     public static String getConclusioniAttuale() {
         return ""
                 + "δu = " + new DecimalFormat("0.000").format(dAttuale) + " cm --> Setto n. " + (iAttuale + 1) + "\n"
-                + "Vt dei setti = " + new DecimalFormat("0.000").format(vAttuale) + " daN" + "\n"
+                + "Vu dei setti = " + new DecimalFormat("0.000").format(vAttuale) + " daN" + "\n"
                 + "K dei setti = " + new DecimalFormat("0.000").format(kAttuale) + " daN/cm";
     }
 
     public static String getConclusioniModificato() {
         return ""
                 + "δu = " + new DecimalFormat("0.000").format(dModificato) + " cm --> Setto n. " + (iModificato + 1) + "\n"
-                + "Vt dei setti = " + new DecimalFormat("0.000").format(vModificato) + " daN" + "\n"
+                + "Vu dei setti = " + new DecimalFormat("0.000").format(vModificato) + " daN" + "\n"
                 + "K dei setti = " + new DecimalFormat("0.000").format(kModificato) + " daN/cm";
     }
 
