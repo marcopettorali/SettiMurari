@@ -1,6 +1,7 @@
 package settimurari;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.geometry.*;
@@ -806,7 +807,7 @@ public class SettiMurariGUI extends Pane {
                 aggiungiLog("ATTENZIONE: valore inserito di n diverso da 3 o 12");
             }
             if (l <= h / 3) {
-                aggiungiLog("ATTENZIONE: valore di lunghezza inferiore di h/3 = " + h / 3);
+                aggiungiLog("ATTENZIONE: valore di lunghezza inferiore di h/3 = " + new DecimalFormat("###,###.###").format(h / 3));
             }
             if (to < 0 || e < 0 || g < 0 || h < 0 || l < 0 || t < 0 | s0 < 0 || fm < 0 || n < 0) {
                 throw new Exception("negativo");
@@ -902,13 +903,13 @@ public class SettiMurariGUI extends Pane {
             settoDaModificare = GestoreSetti.getModificatoArr()[numeroSetto - 1];
         }
 
-        toField.setText(String.valueOf(settoDaModificare.getT0() / 10));
-        eField.setText(String.valueOf(settoDaModificare.getE() / 10));
-        gField.setText(String.valueOf(settoDaModificare.getG() / 10));
-        hField.setText(String.valueOf(settoDaModificare.getH()));
-        lField.setText(String.valueOf(settoDaModificare.getL()));
-        tField.setText(String.valueOf(settoDaModificare.getT()));
-        s0Field.setText(String.valueOf(settoDaModificare.getS0() / 10));
+        toField.setText(String.valueOf(settoDaModificare.getT0()));
+        eField.setText(String.valueOf(settoDaModificare.getE()));
+        gField.setText(String.valueOf(settoDaModificare.getG()));
+        hField.setText(String.valueOf(settoDaModificare.getH() / 10));
+        lField.setText(String.valueOf(settoDaModificare.getL() / 10));
+        tField.setText(String.valueOf(settoDaModificare.getT() / 10));
+        s0Field.setText(String.valueOf(settoDaModificare.getS0()));
         nField.setText(String.valueOf(settoDaModificare.getN()));
 
         modificaMode = true;

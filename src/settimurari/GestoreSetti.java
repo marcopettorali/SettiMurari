@@ -138,16 +138,16 @@ public class GestoreSetti {
 
     public static String getConclusioniAttuale() {
         return ""
-                + "δu = " + new DecimalFormat("0.000").format(dAttuale) + " mm --> Setto n. " + (iAttuale + 1) + "\n"
-                + "Vup = " + new DecimalFormat("0.000").format(vAttuale / 10) + " daN" + "\n"
-                + "K dei setti = " + new DecimalFormat("0.000").format(kAttuale) + " daN/cm";
+                + "δu = " + new DecimalFormat("###,###.###").format(dAttuale) + " mm --> Setto n. " + (iAttuale + 1) + "\n"
+                + "Vup = " + new DecimalFormat("###,###.###").format(vAttuale / 10) + " daN" + "\n"
+                + "K dei setti = " + new DecimalFormat("###,###.###").format(kAttuale) + " daN/cm";
     }
 
     public static String getConclusioniModificato() {
         return ""
-                + "δu = " + new DecimalFormat("0.000").format(dModificato) + " mm --> Setto n. " + (iModificato + 1) + "\n"
-                + "Vup = " + new DecimalFormat("0.000").format(vModificato / 10) + " daN" + "\n"
-                + "K dei setti = " + new DecimalFormat("0.000").format(kModificato) + " daN/cm";
+                + "δu = " + new DecimalFormat("###,###.###").format(dModificato) + " mm --> Setto n. " + (iModificato + 1) + "\n"
+                + "Vup = " + new DecimalFormat("###,###.###").format(vModificato / 10) + " daN" + "\n"
+                + "K dei setti = " + new DecimalFormat("###,###.###").format(kModificato) + " daN/cm";
     }
 
     public static String getStageLog() {
