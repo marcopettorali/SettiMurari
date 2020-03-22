@@ -138,15 +138,15 @@ public class GestoreSetti {
 
     public static String getConclusioniAttuale() {
         return ""
-                + "δu = " + new DecimalFormat("0.000").format(dAttuale) + " cm --> Setto n. " + (iAttuale + 1) + "\n"
-                + "Vu dei setti = " + new DecimalFormat("0.000").format(vAttuale) + " daN" + "\n"
+                + "δu = " + new DecimalFormat("0.000").format(dAttuale) + " mm --> Setto n. " + (iAttuale + 1) + "\n"
+                + "Vup = " + new DecimalFormat("0.000").format(vAttuale / 10) + " daN" + "\n"
                 + "K dei setti = " + new DecimalFormat("0.000").format(kAttuale) + " daN/cm";
     }
 
     public static String getConclusioniModificato() {
         return ""
-                + "δu = " + new DecimalFormat("0.000").format(dModificato) + " cm --> Setto n. " + (iModificato + 1) + "\n"
-                + "Vu dei setti = " + new DecimalFormat("0.000").format(vModificato) + " daN" + "\n"
+                + "δu = " + new DecimalFormat("0.000").format(dModificato) + " mm --> Setto n. " + (iModificato + 1) + "\n"
+                + "Vup = " + new DecimalFormat("0.000").format(vModificato / 10) + " daN" + "\n"
                 + "K dei setti = " + new DecimalFormat("0.000").format(kModificato) + " daN/cm";
     }
 
@@ -172,5 +172,5 @@ public class GestoreSetti {
             aggiungiSetto(s.getModificatoArr()[i]);
         }
     }
-    
+
 }
