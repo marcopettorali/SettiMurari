@@ -792,29 +792,27 @@ public class SettiMurariGUI extends Pane {
     private Setto estraiSettoDaCampiInseriti() {
         double to, e, g, h = 0, l, t, s0, fm, n;
         try {
-            to = Double.parseDouble(toField.getText().replace(",", ".")) * 10;
-            e = Double.parseDouble(eField.getText().replace(",", ".")) * 10;
-            g = Double.parseDouble(gField.getText().replace(",", ".")) * 10;
-            h = Double.parseDouble(hField.getText().replace(",", "."));
-            l = Double.parseDouble(lField.getText().replace(",", "."));
-            t = Double.parseDouble(tField.getText().replace(",", "."));
-            s0 = Double.parseDouble(s0Field.getText().replace(",", ".")) * 10;
-            fm = Double.parseDouble(fmField.getText().replace(",", ".")) * 10;
+            to = Double.parseDouble(toField.getText().replace(",", "."));
+            e = Double.parseDouble(eField.getText().replace(",", "."));
+            g = Double.parseDouble(gField.getText().replace(",", "."));
+            h = Double.parseDouble(hField.getText().replace(",", ".")) * 10;
+            l = Double.parseDouble(lField.getText().replace(",", ".")) * 10;
+            t = Double.parseDouble(tField.getText().replace(",", ".")) * 10;
+            s0 = Double.parseDouble(s0Field.getText().replace(",", "."));
+            fm = Double.parseDouble(fmField.getText().replace(",", "."));
             n = Double.parseDouble(nField.getText().replace(",", "."));
 
             if (n != 3 && n != 12) {
                 aggiungiLog("ATTENZIONE: valore inserito di n diverso da 3 o 12");
             }
             if (l <= h / 3) {
-                throw new Exception("base");
+                aggiungiLog("ATTENZIONE: valore di lunghezza inferiore di h/3 = " + h / 3);
             }
             if (to < 0 || e < 0 || g < 0 || h < 0 || l < 0 || t < 0 | s0 < 0 || fm < 0 || n < 0) {
                 throw new Exception("negativo");
             }
         } catch (Exception ex) {
-            if (ex.getMessage().equals("base")) {
-                aggiungiLog("ERRORE: inserire un valore di lunghezza maggiore di h/3 = " + h / 3);
-            } else if (ex.getMessage().equals("negativo")) {
+            if (ex.getMessage().equals("negativo")) {
                 aggiungiLog("ERRORE: inserire un valore positivo");
             } else {
                 aggiungiLog("ERRORE: valore inserito non numerico.");
